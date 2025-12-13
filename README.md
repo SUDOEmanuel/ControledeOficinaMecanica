@@ -5,4 +5,10 @@ Equipe 4 - Controle de Oficina Mecânica
    https://github.com/SUDOEmanuel/ControledeOficinaMecanica.git
 
 2. Executar o Ambiente
-   Venv\Scripts\Active.ps1
+   venv\Scripts\Active.ps1
+   
+4. Executar as Bibliotecas
+   pip install -r requirements
+   
+5. Executar a Aplicação
+   python .\app.py
