@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Ordens de Serviço</h2>
+
+<form action="{{ url_for('nova_ordem') }}" method="post">
+    <label>Descrição: <input type="text" name="descricao" required></label>
+    <label>Valor Estimado: <input type="number" step="0.01" name="valor_estimado" required></label>
+    <label>Veículo:
+        <select name="veiculo_id" required>
+            {% for v in veiculos %}
+                <option value="{{ v.id }}">{{ v.modelo }} - {{ v.placa }}</option>
+            {% else %}
+                <option value="">Nenhum veículo disponível</option>
+            {% endfor %}
+        </select>
+    </label>
+    <button type="submit">Criar OS</button>
+</form>
+
+<ul>
+{% for ordem in ordens %}
+    <li>
+        <strong>{{ ordem.descricao }}</strong>
+        - Status: {{ ordem.status.value }}
+        - Veículo: {% if ordem.veiculo %}{{ ordem.veiculo.modelo }} - {{ ordem.veiculo.placa }}{% else %}---{% endif %}
+        <br>Valor Estimado: R$ {{ ordem.valor_estimado }} | Valor Final: {{ ordem.valor_final if ordem.valor_final else '---' }}
+
+        <form action="{{ url_for('alterar_status', id=ordem.id) }}" method="post" style="margin-top:6px;">
+            <label>Status:
+                <select name="status">
+                    <option value="ABERTA" {% if ordem.status.name == 'ABERTA' %}selected{% endif %}>Aberta</option>
+                    <option value="EM_EXECUCAO" {% if ordem.status.name == 'EM_EXECUCAO' %}selected{% endif %}>Em Execução</option>
+                    <option value="FINALIZADA" {% if ordem.status.name == 'FINALIZADA' %}selected{% endif %}>Finalizada</option>
+                </select>
+            </label>
+            <label>Valor Final: <input type="number" step="0.01" name="valor_final" value="{{ ordem.valor_final if ordem.valor_final else '' }}"></label>
+            <button type="submit">Alterar Status</button>
+        </form>
+    </li>
+{% else %}
+    <li>Nenhuma ordem cadastrada.</li>
+{% endfor %}
+</ul>
+{% endblock %}

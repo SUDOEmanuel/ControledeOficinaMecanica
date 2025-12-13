@@ -1,0 +1,29 @@
+// ...existing code...
+{% extends "base.html" %}
+{% block content %}
+<h2>Veículos</h2>
+
+<form action="{{ url_for('novo_veiculo') }}" method="post">
+    <label>Modelo: <input type="text" name="modelo" required></label>
+    <label>Placa: <input type="text" name="placa" required></label>
+    <label>Cliente:
+        <select name="cliente_id" required>
+            {% for cliente in clientes %}
+                <option value="{{ cliente.id }}">{{ cliente.nome }}</option>
+            {% else %}
+                <option value="">Nenhum cliente disponível</option>
+            {% endfor %}
+        </select>
+    </label>
+    <button type="submit">Adicionar</button>
+</form>
+
+<ul>
+{% for veiculo in veiculos %}
+    <li>{{ veiculo.modelo }} - {{ veiculo.placa }}{% if veiculo.cliente %} (Cliente: {{ veiculo.cliente.nome }}){% endif %}</li>
+{% else %}
+    <li>Nenhum veículo cadastrado.</li>
+{% endfor %}
+</ul>
+{% endblock %}
+// ...existing code...
