@@ -7,6 +7,10 @@ Integrantes: Lucas Emanuel, Wesley Vieira e Renê Nunes
    
    https://github.com/SUDOEmanuel/ControledeOficinaMecanica.git
 
+2. Criar Ambiente
+
+   python -m venv venv
+
 3. Executar o Ambiente
    
    venv\Scripts\Active.ps1
@@ -15,6 +19,6 @@ Integrantes: Lucas Emanuel, Wesley Vieira e Renê Nunes
    
    pip install -r requirements.txt
    
-6. Executar a Aplicação
+5. Executar a Aplicação
    
    python .\app.py
