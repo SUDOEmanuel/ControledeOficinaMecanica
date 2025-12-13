@@ -1,5 +1,6 @@
 # ControledeOficinaMecanica
 Equipe 4 - Controle de Oficina Mecânica 
+Integrantes: Lucas Emanuel, Wesley Vieira e Renê Nunes
 
 1. Clonar a Aplicação
    https://github.com/SUDOEmanuel/ControledeOficinaMecanica.git
